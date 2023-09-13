@@ -7,19 +7,20 @@ Project for login
 Checkout the project and install dependencies:
 
 ```bash
-git clone https://IterativeProjetos@dev.azure.com/IterativeProjetos/Benessere/_git/PortalWebApp
-cd benessere.cli.portal
+git clone git@ssh.dev.azure.com:v3/IterativeProjetos/Benessere/manipulafacil-portal-admin
+cd manipulafacil-portal-admin
 yarn install
 yarn dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open [http://localhost:6420/admin/autenticacao/login](http://localhost:6420/admin/autenticacao/login) with your browser to see the result.
 
 ## Development
 
 - [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
+- [Redux Toolkit](https://redux-toolkit.js.org/introduction/getting-started) - Redux logic
 - [Formik](https://formik.org/) - create forms
-- [MUI](https://mui.com/) - styles components
+- [MUI](https://mui.com/) - Design System
 
 
 ## Deploying / Publishing
@@ -31,22 +32,22 @@ Open [http://localhost:3000](http://localhost:3000) with your browser to see the
 ##### Install dependencies
 
 ```shell
-npm install
+yarn install
 ```
 
 ##### Build application
 ```shell
-npm run build
+yarn build
 ```
 
 ##### Run application
 ```shell
-npm run start
+yarn dev
 ```
 
 ## All commands
 
-Start local server http://localhost:3000
+Start local server http://localhost:6420/admin/autenticacao/login
 
 ```shell
 yarn dev
@@ -61,11 +62,11 @@ yarn version [<newversion> | major | minor | patch | premajor | preminor | prepa
 Build application
 
 ```shell
-npm run build
+yarn build
 ```
 
 Execute lint project
 
 ```shell
-yarn run lint
+yarn lint
 ```
