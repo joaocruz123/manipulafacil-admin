@@ -5,16 +5,16 @@
  */
 export const b2cPolicies = {
   names: {
-    signUpSignIn: "B2C_1_SignUpSignIn",
-    editProfile: "B2C_1_edit_profile_v2"
+    signUpSignIn: 'B2C_1_SignUpSignIn',
+    editProfile: 'B2C_1_edit_profile_v2'
   },
   authorities: {
     signUpSignIn: {
-      authority: "https://iterativedevlopment.b2clogin.com/iterativedevlopment.onmicrosoft.com/B2C_1_SignUpSignIn",
+      authority: 'https://iterativedevlopment.b2clogin.com/iterativedevlopment.onmicrosoft.com/B2C_1_SignUpSignIn'
     },
     editProfile: {
-      authority: "https://fabrikamb2c.b2clogin.com/fabrikamb2c.onmicrosoft.com/B2C_1_edit_profile_v2"
+      authority: 'https://fabrikamb2c.b2clogin.com/fabrikamb2c.onmicrosoft.com/B2C_1_edit_profile_v2'
     }
   },
-  authorityDomain: "iterativedevlopment.b2clogin.com"
+  authorityDomain: 'iterativedevlopment.b2clogin.com'
 }

@@ -1,4 +1,5 @@
-"use client"
+'use client'
+
 import { useField } from 'formik'
 import { FormControl, TextField } from '@mui/material'
 
@@ -10,7 +11,7 @@ export const InputText = (props: any) => {
       <TextField
         {...field}
         {...props}
-        margin="normal"
+        margin='normal'
         error={meta.touched && !!meta.error}
         helperText={meta.touched && meta.error}
         onChange={({ target: { value } }) => setValue(value)}

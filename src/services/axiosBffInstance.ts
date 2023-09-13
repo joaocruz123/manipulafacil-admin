@@ -1,36 +1,36 @@
-import axios from "axios";
+import axios from 'axios'
 
 export const api = axios.create({
   baseURL: process.env.NEXT_PUBLIC_BFF_PATH_URI,
   headers: {
-    "Content-Type": "application/json",
-  },
-});
+    'Content-Type': 'application/json'
+  }
+})
 
 export const getBearerToken = () => {
   const sessionRoot = JSON.parse(
-    window.sessionStorage.getItem("persist:root") || "{}"
-  );
+    window.sessionStorage.getItem('persist:root') || '{}'
+  )
 
-  const sessionUser = JSON.parse(sessionRoot.auth || "{}");
-  return `Bearer ${sessionUser?.auth.accessToken}`;
-};
+  const sessionUser = JSON.parse(sessionRoot.auth || '{}')
+  return `Bearer ${sessionUser?.auth.accessToken}`
+}
 
 api.interceptors.request.use(
   config => {
-    config.headers!['Authorization'] = getBearerToken();
-    return config;
+    config.headers!['Authorization'] = getBearerToken()
+    return config
   },
   error => {
-    return Promise.reject(error);
+    return Promise.reject(error)
   }
-);
+)
 
 api.interceptors.response.use(
-  (response) => {
-    return response;
+  response => {
+    return response
   },
-  async (error) => {
+  async error => {
     const status = error.response.status
 
     switch (status) {
@@ -39,11 +39,11 @@ api.interceptors.response.use(
       case 400:
         throw new Error('Bab Request')
       case 500:
-        console.error("Internal Server Error");
+        throw new Error('Internal Server Error')
       default:
-        return Promise.reject(error);
+        return Promise.reject(error)
     }
   }
-);
+)
 
-export default api;
+export default api

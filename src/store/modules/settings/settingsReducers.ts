@@ -1,5 +1,5 @@
-import { actionTypes } from ".";
-import { RootState } from "@/store";
+import { actionTypes } from '.'
+import { RootState } from '@/store'
 
 interface State {
   profile: any;
@@ -8,37 +8,37 @@ interface State {
 
 const initialState: State = {
   profile: null,
-  namePage: ""
-};
+  namePage: ''
+}
 
 const SettingReducer = (state: State = initialState, action: any): State => {
-  let newState = state;
+  let newState = state
   switch (action.type) {
     case actionTypes.SET_MODULE_PROFILE_DATA: {
       newState = {
         ...state,
-        profile: action.payload,
-      };
+        profile: action.payload
+      }
 
-      break;
+      break
     }
     case actionTypes.SET_NAME_PAGE: {
       newState = {
         ...state,
-        namePage: action.payload,
-      };
+        namePage: action.payload
+      }
 
-      break;
+      break
     }
     default: {
-      newState = state;
+      newState = state
 
-      break;
+      break
     }
   }
 
-  return newState;
-};
+  return newState
+}
 
-export default SettingReducer;
-export const SettingsState = (state: RootState) => state.settings;
+export default SettingReducer
+export const SettingsState = (state: RootState) => state.settings

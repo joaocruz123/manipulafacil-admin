@@ -1,5 +1,5 @@
-import { actionTypes } from ".";
-import { RootState } from "@/store";
+import { actionTypes } from '.'
+import { RootState } from '@/store'
 
 interface State {
   auth: any;
@@ -10,56 +10,56 @@ interface State {
 const initialState: State = {
   auth: null,
   profile: null,
-  recoverPassword: null,
-};
+  recoverPassword: null
+}
 
 const AuthReducer = (state: State = initialState, action: any): State => {
-  let newState = state;
+  let newState = state
   switch (action.type) {
     case actionTypes.SET_ACCESS_TOKEN_FLOW: {
       newState = {
         ...state,
-        recoverPassword: action.payload,
-      };
+        recoverPassword: action.payload
+      }
 
-      break;
+      break
     }
     case actionTypes.SET_BODY_DATA_RECOVER: {
       newState = {
         ...state,
         recoverPassword: {
           ...state.recoverPassword,
-          bodyAPI: action.payload,
-        },
-      };
+          bodyAPI: action.payload
+        }
+      }
 
-      break;
+      break
     }
     case actionTypes.SET_PROFILE_DATA: {
       newState = {
         ...state,
-        profile: action.payload,
-      };
+        profile: action.payload
+      }
 
-      break;
+      break
     }
     case actionTypes.SET_USER_AUTH: {
       newState = {
         ...state,
-        auth: action.payload,
-      };
+        auth: action.payload
+      }
 
-      break;
+      break
     }
     default: {
-      newState = state;
+      newState = state
 
-      break;
+      break
     }
   }
 
-  return newState;
-};
+  return newState
+}
 
-export default AuthReducer;
-export const AuthState = (state: RootState) => state.auth;
+export default AuthReducer
+export const AuthState = (state: RootState) => state.auth

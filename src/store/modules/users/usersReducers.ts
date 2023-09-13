@@ -1,5 +1,5 @@
-import { actionTypes } from ".";
-import { RootState } from "@/store";
+import { actionTypes } from '.'
+import { RootState } from '@/store'
 
 interface State {
   users: any;
@@ -10,46 +10,46 @@ interface State {
 const initialState: State = {
   users: null,
   pagination: null,
-  profiles: null,
-};
+  profiles: null
+}
 
 const UsersReducer = (state: State = initialState, action: any): State => {
-  let newState = state;
+  let newState = state
   switch (action.type) {
     case actionTypes.GET_ALL_USERS: {
       newState = {
         ...state,
-        users: action.payload,
-      };
+        users: action.payload
+      }
 
-      break;
+      break
     }
     case actionTypes.SET_STUDENTS_PAGINATION: {
       newState = {
         ...state,
-        pagination: action.payload,
-      };
+        pagination: action.payload
+      }
 
-      break;
+      break
     }
     case actionTypes.SET_ALL_PROFILES: {
       newState = {
         ...state,
-        profiles: action.payload,
-      };
+        profiles: action.payload
+      }
 
-      break;
+      break
     }
 
     default: {
-      newState = state;
+      newState = state
 
-      break;
+      break
     }
   }
 
-  return newState;
-};
+  return newState
+}
 
-export default UsersReducer;
-export const UserState = (state: RootState) => state;
+export default UsersReducer
+export const UserState = (state: RootState) => state

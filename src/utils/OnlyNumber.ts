@@ -1,1 +1,1 @@
-export const OnlyNumber = (value = "") => value.replace(/[^\d]/g, "");
+export const OnlyNumber = (value = '') => value.replace(/[^\d]/g, '')

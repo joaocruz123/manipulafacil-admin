@@ -1,5 +1,5 @@
-import { NavigationClient } from "@azure/msal-browser";
-import router from "next/router";
+import { NavigationClient } from '@azure/msal-browser'
+import router from 'next/router'
 
 interface OptionsProps {
   noHistory: boolean;
@@ -7,18 +7,19 @@ interface OptionsProps {
 
 export class CustomNavigationClient extends NavigationClient {
   constructor(router: object) {
-    super();
-    router = router;
+    super()
+    // eslint-disable-next-line
+    router = router
   }
 
   async navigateInternal(url: String, options: OptionsProps) {
-    const relativePath = url.replace(window.location.origin, "");
+    const relativePath = url.replace(window.location.origin, '')
     if (options.noHistory) {
-      router.replace(relativePath);
+      router.replace(relativePath)
     } else {
-      router.push(relativePath);
+      router.push(relativePath)
     }
 
-    return false;
+    return false
   }
 }

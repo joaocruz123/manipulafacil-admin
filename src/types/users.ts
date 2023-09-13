@@ -1,4 +1,5 @@
-import { Moment } from "moment";
+import { MouseEvent, ChangeEvent } from 'react'
+import { Moment } from 'moment'
 
 export interface HeadCell {
     disablePadding: boolean;
@@ -23,8 +24,10 @@ export type Order = 'asc' | 'desc';
 
 export interface EnhancedTableProps {
     numSelected: number;
-    onRequestSort: (event: React.MouseEvent<unknown>, property: keyof Data) => void;
-    onSelectAllClick: (event: React.ChangeEvent<HTMLInputElement>) => void;
+    // eslint-disable-next-line
+    onRequestSort: (event: MouseEvent<unknown>, property: keyof Data) => void;
+    // eslint-disable-next-line
+    onSelectAllClick: (event: ChangeEvent<HTMLInputElement>) => void;
     order: Order;
     orderBy: string;
     rowCount: number;

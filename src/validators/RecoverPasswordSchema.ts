@@ -1,34 +1,34 @@
-import { string, object, ref, boolean } from "yup";
-import { TEXTS } from "./constants/recover";
+import { string, object, ref } from 'yup'
+import { TEXTS } from './constants/recover'
 
 export const RecoverPasswordSchema = (valueTokenType: string | undefined) => {
   return object().shape({
     email: string().when([], {
-      is: () => valueTokenType === "email",
-      then: (schema) => schema.email(TEXTS.EMAIL.ERROR_MSG)
-        .test(TEXTS.EMAIL.NAME, TEXTS.EMAIL.FORMAT_ERROR_MSG, (value) =>
+      is: () => valueTokenType === 'email',
+      then: schema => schema.email(TEXTS.EMAIL.ERROR_MSG)
+        .test(TEXTS.EMAIL.NAME, TEXTS.EMAIL.FORMAT_ERROR_MSG, value =>
           TEXTS.EMAIL.TEST_FN(value as string)
-        ),
+        )
     }),
 
     phone: string()
       .when([], {
-        is: () => valueTokenType === "sms",
-        then: (schema) => schema.test(
+        is: () => valueTokenType === 'sms',
+        then: schema => schema.test(
           TEXTS.MOBILE_PHONE.NAME,
           TEXTS.MOBILE_PHONE.FORMAT_ERROR_MSG,
-          (value) => TEXTS.MOBILE_PHONE.TEST_FN(value as string)
-        ),
-      }),
+          value => TEXTS.MOBILE_PHONE.TEST_FN(value as string)
+        )
+      })
 
-  });
+  })
 }
 
 export const RecoverPasswordTokenSchema = object().shape({
   token: string()
     .min(TEXTS.TOKEN.MIN, TEXTS.TOKEN.ERROR_MIN_MSG)
-    .required(TEXTS.TOKEN.ERROR_MSG),
-});
+    .required(TEXTS.TOKEN.ERROR_MSG)
+})
 
 export const NewPasswordSchema = object().shape({
   password: string()
@@ -43,5 +43,5 @@ export const NewPasswordSchema = object().shape({
     ),
   confirmPassword: string()
     .required(TEXTS.PASS.ERROR_CONFIRM_REQUERED)
-    .oneOf([ref("password")], TEXTS.PASS.ERROR_NOMATCH),
-});
+    .oneOf([ref('password')], TEXTS.PASS.ERROR_NOMATCH)
+})

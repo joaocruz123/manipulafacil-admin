@@ -1,4 +1,4 @@
-import { DialogProps } from "@mui/material";
+import { DialogProps } from '@mui/material'
 
 export type DialogProp = {
     open: boolean;

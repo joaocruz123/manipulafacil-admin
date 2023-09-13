@@ -1,4 +1,5 @@
-"use client"
+'use client'
+
 import { useField } from 'formik'
 import { FormControl } from '@mui/material'
 import { DatePicker } from '@mui/x-date-pickers'
@@ -11,10 +12,10 @@ export const InputDate = (props: any) => {
       <DatePicker
         {...field}
         {...props}
-        margin="normal"
+        margin='normal'
         error={meta.touched && !!meta.error}
         helperText={meta.touched && meta.error}
-        onChange={(value) => setValue(value)}
+        onChange={value => setValue(value)}
         sx={{ marginTop: 2 }}
       />
     </FormControl>

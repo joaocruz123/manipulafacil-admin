@@ -1,4 +1,4 @@
-"use client"
+'use client'
 
 import { useField } from 'formik'
 import { ChangeEvent, useState } from 'react'
@@ -23,7 +23,7 @@ export const InputFile = ({ ...props }) => {
           </Button>
             ) : (
             <Stack sx={{ width: '60%', marginTop: '10px' }}>
-              <LinearProgress color="secondary" />
+              <LinearProgress color='secondary' />
             </Stack>
             )
         }

@@ -1,4 +1,5 @@
-"use client"
+'use client'
+
 import { useState, SyntheticEvent } from 'react'
 import { useField } from 'formik'
 import { Autocomplete, TextField } from '@mui/material'
@@ -9,7 +10,6 @@ interface DataType {
 }
 
 export const InputAutoComplete = ({ ...props }) => {
-  const [val, setVal] = useState<DataType | null>(null)
   const [inputValue, setInputValue] = useState<string>('')
   const [field, meta, { setValue }] = useField(props.name)
   const defaultProps = {
@@ -24,7 +24,7 @@ export const InputAutoComplete = ({ ...props }) => {
       {...defaultProps}
       inputValue={inputValue}
       onInputChange={(_, newInputValue: string) => {
-        setInputValue(newInputValue);
+        setInputValue(newInputValue)
       }}
       isOptionEqualToValue={(option, value) => option.id === value.id}
       onChange={(
@@ -32,10 +32,9 @@ export const InputAutoComplete = ({ ...props }) => {
         newValue: any,
       ) => {
         setValue(newValue)
-        setVal(newValue)
       }
       }
-      renderInput={(params) => (
+      renderInput={params => (
         <TextField
           {...params}
           label={props.label}

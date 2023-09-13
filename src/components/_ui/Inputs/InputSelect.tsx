@@ -1,7 +1,6 @@
-"use client"
-import { useState } from 'react'
-import { useField } from 'formik'
+'use client'
 
+import { useField } from 'formik'
 import {
   Select,
   MenuItem,
@@ -40,7 +39,7 @@ export const InputSelect = ({ ...props }) => {
         ))}
       </Select>
       {(meta.touched && meta.error) && (
-        <FormHelperText style={{ color: "red" }}>{meta.error}</FormHelperText>
+        <FormHelperText style={{ color: 'red' }}>{meta.error}</FormHelperText>
       )}
     </FormControl>
   )
