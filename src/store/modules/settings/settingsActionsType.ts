@@ -1,0 +1,4 @@
+export const actionTypes = {
+  SET_MODULE_PROFILE_DATA: "SET_MODULE_PROFILE_DATA",
+  SET_NAME_PAGE: "SET_NAME_PAGE"
+};

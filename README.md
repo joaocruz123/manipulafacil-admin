@@ -1,20 +1,72 @@
-# Introduction 
-TODO: Give a short introduction of your project. Let this section explain the objectives or the motivation behind this project. 
+# Benessere Client Portal
 
-# Getting Started
-TODO: Guide users through getting your code up and running on their own system. In this section you can talk about:
-1.	Installation process
-2.	Software dependencies
-3.	Latest releases
-4.	API references
+Project for login
 
-# Build and Test
-TODO: Describe and show how to build your code and run the tests. 
+## Getting Started
 
-# Contribute
-TODO: Explain how other users and developers can contribute to make your code better. 
+Checkout the project and install dependencies:
 
-If you want to learn more about creating good readme files then refer the following [guidelines](https://docs.microsoft.com/en-us/azure/devops/repos/git/create-a-readme?view=azure-devops). You can also seek inspiration from the below readme files:
-- [ASP.NET Core](https://github.com/aspnet/Home)
-- [Visual Studio Code](https://github.com/Microsoft/vscode)
-- [Chakra Core](https://github.com/Microsoft/ChakraCore)
+```bash
+git clone git@ssh.dev.azure.com:v3/IterativeProjetos/Benessere/manipulafacil-portal-admin
+cd manipulafacil-portal-admin
+yarn install
+yarn dev
+```
+
+Open [http://localhost:6420/admin/autenticacao/login](http://localhost:6420/admin/autenticacao/login) with your browser to see the result.
+
+## Development
+
+- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
+- [Redux Toolkit](https://redux-toolkit.js.org/introduction/getting-started) - Redux logic
+- [Formik](https://formik.org/) - create forms
+- [MUI](https://mui.com/) - Design System
+
+
+## Deploying / Publishing
+
+#### Pipeline
+
+- [AzureDevOps](https://dev.azure.com/IterativeProjetos/Benessere/_build)
+
+##### Install dependencies
+
+```shell
+yarn install
+```
+
+##### Build application
+```shell
+yarn build
+```
+
+##### Run application
+```shell
+yarn dev
+```
+
+## All commands
+
+Start local server http://localhost:6420/admin/autenticacao/login
+
+```shell
+yarn dev
+```
+
+Version change to project
+
+```shell
+yarn version [<newversion> | major | minor | patch | premajor | preminor | prepatch | prerelease [--preid=<prerelease-id>] | from-git]
+```
+
+Build application
+
+```shell
+yarn build
+```
+
+Execute lint project
+
+```shell
+yarn lint
+```
