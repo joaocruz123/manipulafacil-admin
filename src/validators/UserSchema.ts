@@ -23,8 +23,6 @@ export const UserSchema = () => {
     cpf: string()
       .min(TEXTS.CPF.MIN, TEXTS.CPF.ERROR_MIN)
       .required(TEXTS.CPF.ERROR_MSG),
-    perfil: string(),
     birthDate: string()
   })
-
 }

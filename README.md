@@ -13,7 +13,7 @@ yarn install
 yarn dev
 ```
 
-Open [http://localhost:6420/admin/autenticacao/login](http://localhost:6420/admin/autenticacao/login) with your browser to see the result.
+Open [http://localhost:6420/autenticacao/login](http://localhost:6420/autenticacao/login) with your browser to see the result.
 
 ## Development
 
@@ -47,7 +47,7 @@ yarn dev
 
 ## All commands
 
-Start local server http://localhost:6420/admin/autenticacao/login
+Start local server http://localhost:6420/autenticacao/login
 
 ```shell
 yarn dev

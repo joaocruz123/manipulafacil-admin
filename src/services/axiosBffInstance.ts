@@ -13,7 +13,7 @@ export const getBearerToken = () => {
   )
 
   const sessionUser = JSON.parse(sessionRoot.auth || '{}')
-  return `Bearer ${sessionUser?.auth.accessToken}`
+  return `Bearer ${sessionUser?.auth?.accessToken}`
 }
 
 api.interceptors.request.use(
@@ -35,6 +35,9 @@ api.interceptors.response.use(
 
     switch (status) {
       case 401:
+        sessionStorage.clear()
+        localStorage.clear()
+        window.location.reload()
         throw new Error('Unauthenticated')
       case 400:
         throw new Error('Bab Request')

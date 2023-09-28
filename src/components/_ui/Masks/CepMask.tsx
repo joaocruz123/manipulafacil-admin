@@ -21,6 +21,7 @@ export const CepMask = forwardRef<HTMLInputElement, CustomProps>(
         inputRef={ref}
         onAccept={(value: any) => onChange({ target: { name: props.name, value } })}
         overwrite
+        autoComplete='off'
       />
     )
   }

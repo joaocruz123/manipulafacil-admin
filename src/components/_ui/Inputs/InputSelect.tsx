@@ -32,7 +32,7 @@ export const InputSelect = ({ ...props }) => {
         label={props.label}
         onChange={handleChange}
       >
-        {props.data.map(({ value, label }: DataProps) => (
+        {props?.data?.map(({ value, label }: DataProps) => (
           <MenuItem key={value} value={value}>
             {label}
           </MenuItem>

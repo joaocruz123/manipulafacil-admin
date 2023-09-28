@@ -1,47 +1,21 @@
-import { UseSelector } from 'react-redux/es/hooks/useSelector'
 import { actionTypes } from '.'
 import { Dispatch } from 'redux'
-import { mapAllPharmaciesUsers, mapAllprofilesUsers } from '@/domain/users/usersDTO'
 import api from '@/services/axiosBffInstance'
-import { AuthState } from '../auth/authReducers'
 
-export const listAccountByPharmacyId = (page: number, search: string) =>
-  async (dispatch: Dispatch, getState: UseSelector) => {
-    const state = getState(AuthState)
-    const pharmacyId = state.auth && state.auth.profile.pharmacyId
+export const listAccountByApplicationId = (page: number=1, search: string='') =>
+  async (dispatch: Dispatch) => {
+    const applicationId = process.env.NEXT_PUBLIC_ADMIN_APP_ID
 
     try {
-      const url = `/api/v1/Account/${pharmacyId}/ListAccountByPharmacyId?page=${page}&pageSize=10&search=${search}`
-      const response = await api.get(url)
-      const data = response.data
-      const users = mapAllPharmaciesUsers(data.result)
+      const url = `/api/v1/Account/${applicationId}/ListAccountByApplicationId?page=${page}&pageSize=10&search=${search}`
+      const { data } = await api.get(url)
 
       if (data.success) {
-        dispatch(setAccountsByPharmacy(users))
+        dispatch(setAccountsByPharmacy(data))
         dispatch(setAccountsByPharmacyPagination(data.paging))
-        return users
+        return data
       }
-      return users
-    } catch (e: unknown) {
-      console.log(e)
-    }
-  }
-
-export const ListAccountByApplicationId = (search: string) =>
-  async (dispatch: Dispatch, getState: UseSelector) => {
-    const state = getState(AuthState)
-    const pharmacyId = state.auth && state.auth.profile.pharmacyId
-    try {
-      const url = `/api/v1/Account/${pharmacyId}/ListAccountByPharmacyId?search=${search}`
-      const response = await api.get(url)
-      const data = response.data
-      const users = mapAllPharmaciesUsers(data.result)
-
-      if (data.success) {
-        dispatch(setAccountsByPharmacy(users))
-        return users
-      }
-      return users
+      return data
     } catch (e: unknown) {
       console.log(e)
     }
@@ -110,22 +84,19 @@ export const RemoveAccount = (accountId: any) => async () => {
   }
 }
 
-export const ListProfilesByApplicationId = (flow: number) =>
+export const ListProfilesByApplicationId = () =>
   async (dispatch: Dispatch) => {
     try {
-      const applicationId = flow === 1 ?
-        process.env.NEXT_PUBLIC_ADMIN_APP_ID :
-        process.env.NEXT_PUBLIC_PHARMACY_APP_ID
+      const applicationId = process.env.NEXT_PUBLIC_ADMIN_APP_ID
 
       const url = `/api/v1/Profile/${applicationId}/ListProfilesByApplicationId`
-      const response = await api.get(url)
-      const result = mapAllprofilesUsers(response.data.result)
+      const { data } = await api.get(url)
 
-      if (response.data.success) {
-        dispatch(setAllProfilesList(result))
-        return result
+      if (data.success) {
+        dispatch(setAllProfilesList(data))
+        return data
       }
-      return result
+      return data
     } catch (e: unknown) {
       console.log(e)
     }

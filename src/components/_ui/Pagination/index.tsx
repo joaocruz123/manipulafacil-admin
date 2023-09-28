@@ -7,14 +7,12 @@ interface PaginationProps {
   handleChange: any;
 }
 
-export default function PortalPagination({ totalPages, page, handleChange }: PaginationProps) {
-  return (<>
-    <Grid container spacing={1}>
-      <ContainerPagination item xs={12} md={12} lg={12}>
-        {/* <Pagination count={1} color="secondary" /> */}
-        <Pagination color='secondary' count={totalPages} page={page} onChange={handleChange} />
-      </ContainerPagination>
-    </Grid>
-  </>
-  )
-}
+export const PortalPagination = ({
+  totalPages, page, handleChange
+}: PaginationProps) => (
+  <Grid container spacing={1}>
+    <ContainerPagination item xs={12} md={12} lg={12}>
+      <Pagination color='secondary' count={totalPages} page={page} onChange={handleChange} />
+    </ContainerPagination>
+  </Grid>
+)

@@ -2,7 +2,7 @@
 
 import { useState, SyntheticEvent } from 'react'
 import { useField } from 'formik'
-import { Autocomplete, TextField } from '@mui/material'
+import { Autocomplete, FormControl, TextField } from '@mui/material'
 
 interface DataType {
   id: string;
@@ -18,31 +18,30 @@ export const InputAutoComplete = ({ ...props }) => {
   }
 
   return (
-    <Autocomplete
-      {...field}
-      {...props}
-      {...defaultProps}
-      inputValue={inputValue}
-      onInputChange={(_, newInputValue: string) => {
-        setInputValue(newInputValue)
-      }}
-      isOptionEqualToValue={(option, value) => option.id === value.id}
-      onChange={(
-        event: SyntheticEvent,
-        newValue: any,
-      ) => {
-        setValue(newValue)
-      }
-      }
-      renderInput={params => (
-        <TextField
-          {...params}
-          label={props.label}
-          placeholder={props.label}
-          error={meta.touched && !!meta.error}
-          helperText={meta.touched && meta.error}
-        />
-      )}
-    />
+    <FormControl fullWidth sx={{ mt: 2 }}>
+      <Autocomplete
+        {...field}
+        {...props}
+        {...defaultProps}
+        inputValue={inputValue}
+        onInputChange={(_, newInputValue: string) => {
+          setInputValue(newInputValue)
+        }}
+        isOptionEqualToValue={(option, value) => option.id === value.id}
+        onChange={(event: SyntheticEvent, newValue: any) => {
+          setValue(newValue)
+        }}
+        renderInput={params => (
+          <TextField
+            {...params}
+            size='small'
+            label={props.label}
+            placeholder={props.label}
+            error={meta.touched && !!meta.error}
+            helperText={meta.touched && meta.error}
+          />
+        )}
+      />
+    </FormControl>
   )
 }

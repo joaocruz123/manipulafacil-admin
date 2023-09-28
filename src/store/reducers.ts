@@ -1,14 +1,16 @@
 import { combineReducers } from 'redux'
 import AuthReducer from './modules/auth/authReducers'
-import SettingReducer from './modules/settings/settingsReducers'
 import UsersReducer from './modules/users/usersReducers'
 import AlertReducer from './modules/alerts/alertsReducers'
+import PageSettingsReducer from './modules/pageSettings/pageSettingsReducers'
+import ClientsReducer from './modules/clients/clientsReducers'
 
 const reducers = combineReducers({
   auth: AuthReducer,
-  settings: SettingReducer,
-  users: UsersReducer,
-  alert: AlertReducer
+  accounts: UsersReducer,
+  alert: AlertReducer,
+  page: PageSettingsReducer,
+  clients: ClientsReducer
 })
 
 export default reducers

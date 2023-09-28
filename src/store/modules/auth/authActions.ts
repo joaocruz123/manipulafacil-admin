@@ -4,7 +4,7 @@ import withPublicAuthHeader from '@/utils/withAuthHeader'
 import { removeMask } from '@/utils'
 import publicApi from '@/services/publicApi'
 import api from '@/services/axiosBffInstance'
-import { mapUserAuthAccess } from '@/domain/users/usersDTO'
+// import { mapUserAuthAccess } from '@/domain/users/usersDTO'
 
 //--------------Actions do  Flow de Recuperação de Senha ------------------------
 export const getAccessFlowRecoverPassword = () => async (dispatch: Dispatch) => {
@@ -14,8 +14,7 @@ export const getAccessFlowRecoverPassword = () => async (dispatch: Dispatch) => 
       'password': process.env.NEXT_PUBLIC_PASSWORD_BFF_TOKEN_VALIDATION
     }
     const url = `/api/v1/Account/TokenValidation/GenerateFlowToken`
-    const response = await publicApi.post(url, credentials)
-    const data = response.data
+    const { data } = await publicApi.post(url, credentials)
 
     if (data.success) {
       dispatch(setAccessFlowRecover(data.result))
@@ -28,13 +27,12 @@ export const getAccessFlowRecoverPassword = () => async (dispatch: Dispatch) => 
   }
 }
 
-export const sendTokenValidation = ({ emailOrMobilePhone, flow, type }:
-  { emailOrMobilePhone: string, flow: number, type: string }) =>
+export const sendTokenValidation = ({ emailOrMobilePhone, type }:
+  { emailOrMobilePhone: string, type: string }) =>
   async (dispatch: Dispatch) => {
     try {
       const body = {
-        'applicationId': flow === 1 ? process.env.NEXT_PUBLIC_ADMIN_APP_ID :
-          process.env.NEXT_PUBLIC_PHARMACY_APP_ID,
+        'applicationId': process.env.NEXT_PUBLIC_ADMIN_APP_ID,
         'verificationCodeType': type === 'email' ? 1 : 2,
         'emailOrMobilePhone': type === 'sms' ?
           removeMask(emailOrMobilePhone) : emailOrMobilePhone
@@ -111,15 +109,12 @@ export const setBodyDataRecover = (body: object) => ({
 
 //--------------Actions de recuperação de dados do usuário ------------------------
 
-export const getFullProfileAccount = (flow: number) =>
+export const getFullProfileAccount = () =>
   async (dispatch: Dispatch) => {
-    const applicationId = flow === 1 ?
-      process.env.NEXT_PUBLIC_ADMIN_APP_ID :
-      process.env.NEXT_PUBLIC_PHARMACY_APP_ID
+    const applicationId = process.env.NEXT_PUBLIC_ADMIN_APP_ID
     try {
       const url = `/api/v1/Account/${applicationId}/Me`
-      const response = await api.get(url)
-      const data = response.data
+      const { data } = await api.get(url)
 
       if (data.success) {
         dispatch(setProfileData(data.result))
@@ -138,5 +133,5 @@ export const setProfileData = (data: any) => ({
 
 export const setUserAuthData = (access: any) => ({
   type: actionTypes.SET_USER_AUTH,
-  payload: mapUserAuthAccess(access)
+  payload: access
 })

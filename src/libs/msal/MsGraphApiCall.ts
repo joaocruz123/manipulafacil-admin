@@ -1,9 +1,9 @@
 import { apiConfig } from '@/libs/msal/authConfig'
-import { useMsalInstancePharmacies } from '@/hooks/useMsalInstancePharmacies'
+import { useMsalInstanceAdmin } from '@/hooks/useMsalInstanceAdmin'
 
 export async function callMsGraph() {
   // eslint-disable-next-line react-hooks/rules-of-hooks
-  const msalInstance = useMsalInstancePharmacies()
+  const msalInstance = useMsalInstanceAdmin()
   const account = msalInstance.getActiveAccount()
   if (!account) {
     throw Error(

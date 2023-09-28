@@ -15,7 +15,7 @@ export const AppBar = styled(MuiAppBar, {
   marginLeft: '88px !important',
   width: `calc(100% - 88px)`,
   boxShadow: 'none',
-  backgroundColor: 'transparent',
+  backgroundColor: '#f5f5f5',
   // backgroundColor: theme.palette.primary.main,
   zIndex: theme.zIndex.drawer + 1,
   transition: theme.transitions.create(['width', 'margin'], {
@@ -24,7 +24,7 @@ export const AppBar = styled(MuiAppBar, {
   }),
   // color: theme.palette.secondary.main,
   ...(open && {
-    backgroundColor: 'transparent',
+    backgroundColor: '#f5f5f5',
     // backgroundColor: theme.palette.primary.main,
     boxShadow: 'none',
     marginLeft: drawerWidth,

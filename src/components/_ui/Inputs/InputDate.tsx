@@ -8,7 +8,7 @@ export const InputDate = (props: any) => {
   const [field, meta, { setValue }] = useField(props.name)
 
   return (
-    <FormControl fullWidth>
+    <FormControl fullWidth size='small'>
       <DatePicker
         {...field}
         {...props}
@@ -17,6 +17,7 @@ export const InputDate = (props: any) => {
         helperText={meta.touched && meta.error}
         onChange={value => setValue(value)}
         sx={{ marginTop: 2 }}
+        slotProps={{ textField: { size: 'small' } }}
       />
     </FormControl>
   )

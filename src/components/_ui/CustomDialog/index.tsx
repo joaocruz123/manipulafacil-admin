@@ -8,7 +8,7 @@ import Success from '@/assets/icons/sucesso.png'
 import Image from 'next/image'
 import { DialogProp } from '@/components/types/types'
 
-export default function CustomDialog({
+export const CustomDialog = ({
   open,
   handleClose,
   title,
@@ -19,7 +19,7 @@ export default function CustomDialog({
   icon,
   iconType,
   textAlign
-}: DialogProp) {
+}: DialogProp) => {
   return (
     <div>
       <Dialog

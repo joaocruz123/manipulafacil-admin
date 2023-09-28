@@ -1,10 +1,10 @@
-import React, { useState } from 'react'
+import React, { useState, ReactNode, useEffect } from 'react'
 import Box from '@mui/material/Box'
 import { Toolbar, List, Typography, IconButton, Badge, Container } from '@mui/material'
 import MenuIcon from '@mui/icons-material/Menu'
 import MainListItems from './Menu/ListItems'
 import { AppBar, Drawer } from '@/styles/general'
-import { SignOutButton } from '@/components'
+import { LoadingComponent, SignOutButton } from '@/components'
 import { Skeleton, Tooltip } from '@mui/material'
 import { useSelector } from 'react-redux'
 import { AuthState } from '@/store/modules/auth/authReducers'
@@ -12,24 +12,37 @@ import Logo from '@/assets/logo_manipula.png'
 import Image from 'next/image'
 import { AccountBox, HeaderIcon } from './style'
 import { LuBell } from 'react-icons/lu'
-import { SettingsState } from '@/store/modules/settings/settingsReducers'
+import { PageSettingsState } from '@/store/modules/pageSettings/pageSettingsReducers'
+import { useMsalAuthentication } from '@azure/msal-react'
+import { useAppDispatch } from '@/hooks/useRedux'
+import { InteractionType } from '@azure/msal-browser'
+import { getFullProfileAccount } from '@/store/modules/auth/authActions'
 
-export default function Dashboard({ children }: { children: React.ReactNode }) {
+export function Dashboard({ children }: { children: ReactNode }) {
+  useMsalAuthentication(InteractionType.Redirect)
+  const dispatch = useAppDispatch()
   const [open, setOpen] = useState(true)
   // eslint-disable-next-line
   const [newNotificarion, setNewNotificarion] = useState(true)
   const state = useSelector(AuthState)
-  const setting = useSelector(SettingsState)
+  const { page } = useSelector(PageSettingsState)
   const userName = (state.profile && state.profile.fullName) || ''
   const userEmail = (state.profile && state.profile.email) || ''
-  const namePage = (setting && setting.namePage) || ''
-  const profileAccess = (setting && setting.profile) || ''
-  const toggleDrawer = () => {
-    setOpen(!open)
-  }
+  const [isLoading, setIsLoading] = useState(true)
+  const toggleDrawer = () => setOpen(!open)
+
+
+  useEffect(() => {
+    setTimeout(() => dispatch(getFullProfileAccount())
+      .then(() => setIsLoading(false))
+    , 2000)
+  }, [dispatch])
 
   return (
-    <Box sx={{ display: 'flex' }}>
+    <>
+     {isLoading ? 
+      <LoadingComponent loading={true} color='#96C12B' text='' /> :
+      <Box sx={{ display: 'flex' }}>
       <AppBar position='absolute' open={open}>
         <Toolbar sx={{ pr: '24px' }}>
           <IconButton
@@ -48,7 +61,7 @@ export default function Dashboard({ children }: { children: React.ReactNode }) {
             noWrap
             sx={{ flexGrow: 1 }}
           >
-            {namePage}
+            {page?.namePage}
           </Typography>
           <Tooltip title='Notificações' placement='bottom' arrow>
             <HeaderIcon color='inherit'>
@@ -73,7 +86,7 @@ export default function Dashboard({ children }: { children: React.ReactNode }) {
           </Box>
         </Toolbar>
         <List component='nav'>
-          <MainListItems profileAccess={profileAccess} />
+          <MainListItems />
         </List>
         <Box sx={{
           display: open ? 'flex' : 'none',
@@ -122,6 +135,8 @@ export default function Dashboard({ children }: { children: React.ReactNode }) {
           {children}
         </Container>
       </Box>
-    </Box >
+    </Box >}
+    </>
+    
   )
 }

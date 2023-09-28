@@ -4,12 +4,13 @@ import TableContainer from '@mui/material/TableContainer'
 import TableHead from '@mui/material/TableHead'
 import TableRow from '@mui/material/TableRow'
 import TableCell from '@mui/material/TableCell'
-import { Skeleton } from '@mui/material'
+import { Paper, Skeleton } from '@mui/material'
 
 const header = [1, 2, 3, 4, 5, 6]
 const lines = [1, 2, 3, 4, 5, 6]
-export default function TableLoading() {
-  return (
+
+export const TableLoading = () => (
+  <Paper>
     <TableContainer >
       <Table sx={{ minWidth: 650, fontSize: '16px' }} aria-label='simple table'>
         <TableHead>
@@ -40,5 +41,6 @@ export default function TableLoading() {
         </TableBody>
       </Table>
     </TableContainer>
-  )
-}
+  </Paper>
+  
+)
