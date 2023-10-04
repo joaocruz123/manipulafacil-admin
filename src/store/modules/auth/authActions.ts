@@ -32,7 +32,7 @@ export const sendTokenValidation = ({ emailOrMobilePhone, type }:
   async (dispatch: Dispatch) => {
     try {
       const body = {
-        'applicationId': process.env.NEXT_PUBLIC_ADMIN_APP_ID,
+        'applicationId': process.env.NEXT_PUBLIC_APLICATION_ADMIN_ID,
         'verificationCodeType': type === 'email' ? 1 : 2,
         'emailOrMobilePhone': type === 'sms' ?
           removeMask(emailOrMobilePhone) : emailOrMobilePhone
@@ -111,7 +111,7 @@ export const setBodyDataRecover = (body: object) => ({
 
 export const getFullProfileAccount = () =>
   async (dispatch: Dispatch) => {
-    const applicationId = process.env.NEXT_PUBLIC_ADMIN_APP_ID
+    const applicationId = process.env.NEXT_PUBLIC_APLICATION_ADMIN_ID
     try {
       const url = `/api/v1/Account/${applicationId}/Me`
       const { data } = await api.get(url)

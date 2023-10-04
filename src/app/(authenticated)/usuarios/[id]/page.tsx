@@ -99,7 +99,7 @@ export default function EditCreateUserPage({ params }: { params: { id: string } 
         'cpfCnpj': removeMask(values.cpf),
         'mobilePhone': removeMask(values.phone),
         'birthDate': moment(values.birthDate).format(),
-        'profileId': process.env.NEXT_PUBLIC_ADMIN_APP_ID
+        'profileId': process.env.NEXT_PUBLIC_APLICATION_ADMIN_ID
       }
 
       dispatch(UpdateAccount({ accountId: id, data: newValuew }))

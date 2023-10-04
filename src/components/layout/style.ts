@@ -20,3 +20,12 @@ export const styleCustom = {
         textDecoration: 'none'
     }
 }
+
+export const styleCustomMenuItem = {
+    borderRadius: '10px',
+    fontSize: '20px',
+    '&:hover': {
+      color: '#96C12B',
+      borderRadius: '10px'
+    }
+  }

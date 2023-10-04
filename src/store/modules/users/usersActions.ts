@@ -4,7 +4,7 @@ import api from '@/services/axiosBffInstance'
 
 export const listAccountByApplicationId = (page: number=1, search: string='') =>
   async (dispatch: Dispatch) => {
-    const applicationId = process.env.NEXT_PUBLIC_ADMIN_APP_ID
+    const applicationId = process.env.NEXT_PUBLIC_APLICATION_ADMIN_ID
 
     try {
       const url = `/api/v1/Account/${applicationId}/ListAccountByApplicationId?page=${page}&pageSize=10&search=${search}`
@@ -87,7 +87,7 @@ export const RemoveAccount = (accountId: any) => async () => {
 export const ListProfilesByApplicationId = () =>
   async (dispatch: Dispatch) => {
     try {
-      const applicationId = process.env.NEXT_PUBLIC_ADMIN_APP_ID
+      const applicationId = process.env.NEXT_PUBLIC_APLICATION_ADMIN_ID
 
       const url = `/api/v1/Profile/${applicationId}/ListProfilesByApplicationId`
       const { data } = await api.get(url)

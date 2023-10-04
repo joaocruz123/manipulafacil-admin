@@ -1,23 +1,28 @@
 import { actionTypes } from '.'
 import { Dispatch } from 'redux'
-import { mapAllprofilesUsers } from '@/domain/users/usersDTO'
 import api from '@/services/axiosBffInstance'
+import { mapAllProfiles } from '@/domain/profiles'
 
 type CitiesTypes = {
   cityId: string,
 }
 
-export const ListAccountByApplicationId = (page: number, search: string) =>
+export const ListProfilesByApplicationId = (page: number, search: string) =>
   async (dispatch: Dispatch) => {
-    const applicationId = process.env.NEXT_PUBLIC_APLICATION_ID || ''
+    const applicationId = process.env.NEXT_PUBLIC_APLICATION_ADMIN_ID || ''
 
     try {
-      const url = `/api/v1/Account/${applicationId}/ListAccountByApplicationId?page=${page}&pageSize=10&search=${search}`
+      const url = `/api/v1/Profile/${applicationId}/ListProfilesByApplicationId?page=${page}&pageSize=10&search=${search}`
       const response = await api.get(url)
       const data = response.data
+      const mappedProfiles = mapAllProfiles(response.data.result)
 
+      console.log(mappedProfiles)
       if (data.success) {
-        dispatch(setAccountsByPharmacy(data))
+        dispatch(setProfiles({
+          ...data,
+          result: mappedProfiles
+        }))
         dispatch(setAccountsByPharmacyPagination(data.paging))
         return data
       }
@@ -164,27 +169,6 @@ export const DeleteAddress = (accountAddressId: any) => async () => {
   }
 }
 
-export const ListProfilesByApplicationId = (flow: number) =>
-  async (dispatch: Dispatch) => {
-    try {
-      const applicationId = flow === 1 ?
-        process.env.NEXT_PUBLIC_APLICATION_ADMIN_ID :
-        process.env.NEXT_PUBLIC_PHARMACY_APP_ID
-
-      const url = `/api/v1/Profile/${applicationId}/ListProfilesByApplicationId`
-      const response = await api.get(url)
-      const result = mapAllprofilesUsers(response.data.result)
-
-      if (response.data.success) {
-        dispatch(setAllProfilesList(result))
-        return result
-      }
-      return result
-    } catch (e: unknown) {
-      console.log(e)
-    }
-  }
-
 export const fetchListStates = () => async (dispatch: Dispatch) => {
   try {
     const url = '/api/v1/Address/GetListStates'
@@ -229,8 +213,8 @@ export const fetchListCitiesSearch = (cityId: CitiesTypes, search: string) => as
   }
 }
 
-export const setAccountsByPharmacy = (data: any) => ({
-  type: actionTypes.GET_ALL_CLIENTS,
+export const setProfiles = (data: any) => ({
+  type: actionTypes.GET_ALL_PROFILES,
   payload: data
 })
 
